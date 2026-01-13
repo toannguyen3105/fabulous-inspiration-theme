@@ -32,3 +32,7 @@ Hệ thống tài liệu được lưu trữ ngay trong mã nguồn để dễ d
   - Viết tài liệu bằng Markdown ngay trong VS Code.
   - Không cần vào giao diện web của Wiki để sửa thủ công.
   - Tài liệu luôn khớp với phiên bản code hiện tại.
+
+## 3. Lịch sử cập nhật
+
+- **v1.0 (2026-01-13)**: Thiết lập quy trình CI/CD ban đầu (Theme Check & Wiki Sync).
