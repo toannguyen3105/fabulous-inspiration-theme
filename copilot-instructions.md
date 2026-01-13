@@ -1,0 +1,1 @@
+/Users/toannh/fabulous-inspiration-theme/AGENTS.md
