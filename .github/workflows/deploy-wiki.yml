@@ -27,10 +27,8 @@ jobs:
         with:
           globs: "docs/**/*.md"
 
-      - name: Upload Wiki
-        uses: SwiftDocOrg/github-wiki-action@v1
+      - name: Sync docs to Wiki
+        uses: spenserblack/actions-wiki@v0.1.0
         with:
-          wiki_folder: docs
-          launch_args: "--force" # Force push to avoid history conflicts if any
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          wiki-directory: docs
+          token: ${{ secrets.GITHUB_TOKEN }}
