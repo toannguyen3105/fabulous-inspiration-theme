@@ -1,0 +1,24 @@
+name: Deploy Wiki
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "docs/**"
+
+jobs:
+  deploy-wiki:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Sync docs to Wiki
+        uses: newrelic/wiki-sync-action@v1.0.1
+        with:
+          source: docs
+          destination: wiki
+          token: ${{ secrets.GITHUB_TOKEN }}
+          gitAuthorName: "shopify-bot"
+          gitAuthorEmail: "bot@shopify.com"
