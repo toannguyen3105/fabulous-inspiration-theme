@@ -18,7 +18,7 @@ jobs:
         uses: newrelic/wiki-sync-action@v1.0.1
         with:
           source: docs
-          destination: wiki
+          destination: .
           token: ${{ secrets.GITHUB_TOKEN }}
           gitAuthorName: "shopify-bot"
           gitAuthorEmail: "bot@shopify.com"
