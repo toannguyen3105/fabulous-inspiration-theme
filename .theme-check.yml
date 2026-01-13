@@ -1,0 +1,59 @@
+extends: theme-check:recommended
+
+# Custom configuration
+root: .
+ignore:
+  - node_modules
+  - .git
+
+# Check customizations
+AssetPreload:
+  enabled: true
+  severity: error
+
+CheckManifest:
+  enabled: true
+  severity: warning
+
+DeprecateBgs:
+  enabled: true
+  severity: error
+
+DeprecateLazysizes:
+  enabled: true
+  severity: error
+
+ImgLazyLoading:
+  enabled: true
+  severity: suggestion
+
+JsonSyntax:
+  enabled: true
+  severity: error
+
+LiquidSyntax:
+  enabled: true
+  severity: error
+
+MissingTemplate:
+  enabled: true
+  severity: error
+
+ParserBlockingScript:
+  enabled: true
+  severity: warning
+
+RequiredLayoutThemeObject:
+  enabled: true
+  severity: error
+
+Translation:
+  enabled: true
+  severity: warning
+
+UnusedAssign:
+  enabled: true
+  severity: style
+
+VariableUnused:
+  enabled: false

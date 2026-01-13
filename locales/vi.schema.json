@@ -1,0 +1,76 @@
+{
+  "general": {
+    "404": "Không tìm thấy",
+    "article": "Bài viết",
+    "block": "Khối",
+    "blog": "Blog",
+    "cart": "Giỏ hàng",
+    "collection": "Bộ sưu tập",
+    "collections": "Các bộ sưu tập",
+    "collection_card": "Thẻ bộ sưu tập",
+    "collections_grid": "Lưới bộ sưu tập",
+    "colors": "Màu sắc",
+    "column": "Cột",
+    "content": "Nội dung",
+    "custom_section": "Giao diện tùy chỉnh",
+    "fonts": "Phông chữ",
+    "footer": "Chân trang",
+    "group": "Nhóm",
+    "header": "Đầu trang",
+    "layout": "Bố cục",
+    "main": "Chính",
+    "page": "Trang",
+    "password": "Mật khẩu",
+    "primary": "Chính",
+    "product": "Sản phẩm",
+    "row": "Hàng",
+    "search": "Tìm kiếm",
+    "secondary": "Phụ",
+    "section": "Phần",
+    "settings": "Cài đặt",
+    "sidebar": "Thanh bên",
+    "text": "Văn bản",
+    "theme": "Giao diện",
+    "typography": "Kiểu chữ"
+  },
+  "labels": {
+    "alignment": "Căn chỉnh",
+    "background": "Nền",
+    "foreground": "Tiền cảnh (Chữ/Icon)",
+    "grid_gap": "Khoảng cách lưới",
+    "grid_item_width": "Độ rộng item lưới",
+    "input_corner_radius": "Bo góc ô nhập liệu",
+    "layout_direction": "Hướng bố cục",
+    "menu": "Menu",
+    "padding": "Khoảng đệm (padding)",
+    "page_margin": "Lề trang",
+    "page_width": "Độ rộng trang",
+    "show_payment_icons": "Hiện icon thanh toán",
+    "text_style": "Kiểu chữ",
+    "text": "Văn bản"
+  },
+  "options": {
+    "alignment": {
+      "left": "Trái",
+      "center": "Giữa",
+      "right": "Phải"
+    },
+    "direction": {
+      "horizontal": "Ngang",
+      "vertical": "Dọc"
+    },
+    "page_width": {
+      "narrow": "Hẹp",
+      "wide": "Rộng"
+    },
+    "size": {
+      "large": "Lớn",
+      "small": "Nhỏ"
+    },
+    "text_style": {
+      "title": "Tiêu đề",
+      "subtitle": "Phụ đề",
+      "normal": "Bình thường"
+    }
+  }
+}
