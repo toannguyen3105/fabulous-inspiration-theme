@@ -17,5 +17,5 @@ jobs:
       - name: Sync docs to Wiki
         uses: spenserblack/actions-wiki@v0.1.0
         with:
-          path: docs
+          wiki-directory: docs
           token: ${{ secrets.GITHUB_TOKEN }}
