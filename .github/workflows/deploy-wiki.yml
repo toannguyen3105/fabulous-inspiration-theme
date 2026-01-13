@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - "docs/**"
+  workflow_dispatch:
 
 jobs:
   deploy-wiki:
@@ -14,7 +15,17 @@ jobs:
       contents: write
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Validate Markdown
+        uses: DavidAnson/markdownlint-cli2-action@v15
+        with:
+          globs: "docs/**/*.md"
 
       - name: Sync docs to Wiki
         uses: spenserblack/actions-wiki@v0.1.0
