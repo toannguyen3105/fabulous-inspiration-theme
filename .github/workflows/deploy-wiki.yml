@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - "docs/**"
+  workflow_dispatch:
 
 jobs:
   deploy-wiki:
@@ -14,10 +15,22 @@ jobs:
       contents: write
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Sync docs to Wiki
-        uses: spenserblack/actions-wiki@v0.1.0
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          wiki-directory: docs
-          token: ${{ secrets.GITHUB_TOKEN }}
+          node-version: 18
+
+      - name: Validate Markdown
+        uses: DavidAnson/markdownlint-cli2-action@v15
+        with:
+          globs: "docs/**/*.md"
+
+      - name: Upload Wiki
+        uses: SwiftDocOrg/github-wiki-action@v1
+        with:
+          wiki_folder: docs
+          launch_args: "--force" # Force push to avoid history conflicts if any
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
