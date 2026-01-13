@@ -36,3 +36,4 @@ Hệ thống tài liệu được lưu trữ ngay trong mã nguồn để dễ d
 ## 3. Lịch sử cập nhật
 
 - **v1.0 (2026-01-13)**: Thiết lập quy trình CI/CD ban đầu (Theme Check & Wiki Sync).
+- **v1.1 (2026-01-13)**: Cập nhật Wiki Workflow (chuyển sang `spenserblack/actions-wiki`) để sửa lỗi path.
