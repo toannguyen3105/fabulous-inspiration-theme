@@ -38,3 +38,4 @@ Hệ thống tài liệu được lưu trữ ngay trong mã nguồn để dễ d
 - **v1.0 (2026-01-13)**: Thiết lập quy trình CI/CD ban đầu (Theme Check & Wiki Sync).
 - **v1.1 (2026-01-13)**: Cập nhật Wiki Workflow (chuyển sang `spenserblack/actions-wiki`) để sửa lỗi path.
 - **v1.2 (2026-01-13)**: Sửa lỗi tham số `wiki-directory` cho workflow deploy wiki.
+- **v1.3 (2026-01-13)**: Cấp quyền `permissions: contents: write` cho workflow để khắc phục lỗi Authentication (Error 128).
