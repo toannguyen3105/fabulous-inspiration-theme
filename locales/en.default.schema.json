@@ -74,6 +74,18 @@
     }
   },
   "sections": {
+    "all": {
+      "padding": {
+        "section_padding_heading": "Section padding",
+        "padding_top": "Padding top",
+        "padding_bottom": "Padding bottom"
+      },
+      "margin": {
+        "header_margin": "Section margin",
+        "margin_top": "Margin top",
+        "margin_bottom": "Margin bottom"
+      }
+    },
     "header": {
       "name": "Header",
       "settings": {
@@ -93,6 +105,78 @@
       },
       "presets": {
         "name": "Header"
+      }
+    },
+    "hero_banner": {
+      "name": "Hero Banner",
+      "settings": {
+        "image_desktop": { "label": "Desktop Image" },
+        "image_mobile": { "label": "Mobile Image" },
+        "desktop_height": { "label": "Desktop Height" },
+        "mobile_height": { "label": "Mobile Height" },
+        "header_content": { "content": "Content" },
+        "heading": { "label": "Heading" },
+        "subheading": { "label": "Subheading" },
+        "text_align": {
+          "label": "Text Alignment",
+          "options": {
+            "left": "Left",
+            "center": "Center",
+            "right": "Right"
+          }
+        },
+        "text_color": { "label": "Text Color" },
+        "overlay_opacity": { "label": "Overlay Opacity" },
+        "header_button": { "content": "Button" },
+        "button_label": { "label": "Button Label" },
+        "button_link": { "label": "Button Link" },
+        "button_bg_color": { "label": "Button Background" },
+         "button_text_color": { "label": "Button Text" }
+      },
+      "presets": {
+        "name": "Hero Banner"
+      }
+    },
+    "featured_collection": {
+      "name": "Featured Collection",
+      "settings": {
+        "title": { "label": "Heading" },
+        "title_alignment": {
+             "label": "Heading Alignment",
+             "options": {
+                "left": "Left",
+                "center": "Center",
+                "right": "Right"
+             }
+        },
+        "collection": { "label": "Collection" },
+        "products_to_show": { "label": "Maximum products to show" },
+        "columns_desktop": { "label": "Number of columns on desktop" },
+        "columns_mobile": { "label": "Number of columns on mobile" },
+         "show_view_all": { "label": "Enable \"View all\" button" }
+      },
+      "presets": {
+        "name": "Featured Collection"
+      }
+    },
+    "rich_text": {
+      "name": "Rich Text",
+      "settings": {
+        "heading": { "label": "Heading" },
+        "content": { "label": "Content" },
+        "text_align": {
+            "label": "Text Alignment",
+            "options": {
+                "left": "Left",
+                "center": "Center",
+                "right": "Right"
+             }
+        },
+        "bg_color": { "label": "Background Color" },
+        "text_color": { "label": "Text Color" }
+      },
+      "presets": {
+        "name": "Rich Text"
       }
     }
   }
