@@ -48,5 +48,13 @@
     "submit": "Tìm",
     "no_results_html": "Không có kết quả nào cho {{ terms }}",
     "results_for_html": "{{ count }} kết quả tìm thấy cho {{ terms }}"
+  },
+  "sections": {
+    "header": {
+      "search": "Tìm kiếm",
+      "account": "Tài khoản",
+      "cart": "Giỏ hàng",
+      "cart_count": "{{ count }} sản phẩm"
+    }
   }
 }

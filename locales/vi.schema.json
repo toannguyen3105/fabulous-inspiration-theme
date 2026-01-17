@@ -72,5 +72,28 @@
       "subtitle": "Phụ đề",
       "normal": "Bình thường"
     }
+  },
+  "sections": {
+    "header": {
+      "name": "Đầu trang",
+      "settings": {
+        "logo": {
+          "label": "Hình ảnh Logo"
+        },
+        "logo_width": {
+          "label": "Độ rộng Logo",
+          "unit": "px"
+        },
+        "menu": {
+          "label": "Menu"
+        },
+        "sticky_header": {
+          "label": "Bật dính đầu trang"
+        }
+      },
+      "presets": {
+        "name": "Đầu trang"
+      }
+    }
   }
 }
