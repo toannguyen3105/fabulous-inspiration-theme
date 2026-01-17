@@ -48,5 +48,90 @@
     "submit": "Tìm",
     "no_results_html": "Không có kết quả nào cho {{ terms }}",
     "results_for_html": "{{ count }} kết quả tìm thấy cho {{ terms }}"
+  },
+  "sections": {
+    "header": {
+      "search": "Tìm kiếm",
+      "account": "Tài khoản",
+      "cart": "Giỏ hàng",
+      "cart_count": "{{ count }} sản phẩm"
+    },
+    "hero_banner": {
+      "name": "Banner Hero",
+      "settings": {
+        "image_desktop": { "label": "Hình Desktop" },
+        "image_mobile": { "label": "Hình Mobile" },
+        "desktop_height": { "label": "Chiều cao Desktop" },
+        "mobile_height": { "label": "Chiều cao Mobile" },
+        "header_content": { "content": "Nội dung" },
+        "heading": { "label": "Tiêu đề" },
+        "subheading": { "label": "Phụ đề" },
+        "text_align": {
+          "label": "Căn chỉnh chữ",
+          "options": {
+            "left": "Trái",
+            "center": "Giữa",
+            "right": "Phải"
+          }
+        },
+        "text_color": { "label": "Màu chữ" },
+        "overlay_opacity": { "label": "Độ mờ lớp phủ" },
+        "header_button": { "content": "Nút" },
+        "button_label": { "label": "Nhãn nút" },
+        "button_link": { "label": "Liên kết nút" },
+        "button_bg_color": { "label": "Màu nền nút" },
+         "button_text_color": { "label": "Màu chữ nút" }
+      },
+      "presets": {
+        "name": "Banner Hero"
+      }
+    },
+    "featured_collection": {
+      "name": "Bộ sưu tập nổi bật",
+      "settings": {
+        "title": { "label": "Tiêu đề" },
+        "title_alignment": {
+             "label": "Căn chỉnh tiêu đề",
+             "options": {
+                "left": "Trái",
+                "center": "Giữa",
+                "right": "Phải"
+             }
+        },
+        "collection": { "label": "Bộ sưu tập" },
+        "products_to_show": { "label": "Số sản phẩm tối đa" },
+        "columns_desktop": { "label": "Số cột trên desktop" },
+        "columns_mobile": { "label": "Số cột trên mobile" },
+         "show_view_all": { "label": "Hiển thị nút \"Xem tất cả\"" }
+      },
+      "presets": {
+        "name": "Bộ sưu tập nổi bật"
+      },
+      "onboarding": {
+          "product_title": "Sản phẩm mẫu"
+      },
+      "view_all": "Xem tất cả"
+    },
+    "rich_text": {
+      "name": "Văn bản",
+      "settings": {
+        "heading": { "label": "Tiêu đề" },
+        "content": { "label": "Nội dung" },
+        "text_align": {
+            "label": "Căn chỉnh",
+            "options": {
+                "left": "Trái",
+                "center": "Giữa",
+                "right": "Phải"
+             }
+        },
+        "bg_color": { "label": "Màu nền" },
+        "text_color": { "label": "Màu chữ" }
+      },
+      "presets": {
+        "name": "Văn bản"
+      }
+    }
+
   }
 }

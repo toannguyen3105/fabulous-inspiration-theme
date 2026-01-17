@@ -1,0 +1,111 @@
+{%- style -%}
+  .section-rich-text-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    text-align: {{ section.settings.text_align }};
+  }
+  
+  .rich-text__wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem;
+  }
+  
+  .rich-text__heading {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: inherit;
+  }
+  
+  .rich-text__text {
+      font-size: 1.125rem;
+      line-height: 1.6;
+      color: inherit;
+      opacity: 0.9;
+  }
+{%- endstyle -%}
+
+<div class="section-rich-text-{{ section.id }}">
+    <div class="rich-text__wrapper">
+        {%- if section.settings.heading != blank -%}
+            <h2 class="rich-text__heading">{{ section.settings.heading | escape }}</h2>
+        {%- endif -%}
+        {%- if section.settings.content != blank -%}
+            <div class="rich-text__text rte">
+                {{ section.settings.content }}
+            </div>
+        {%- endif -%}
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.rich_text.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.rich_text.settings.heading.label",
+      "default": "Talk about your brand"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "t:sections.rich_text.settings.content.label",
+      "default": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "t:sections.rich_text.settings.text_align.label",
+      "options": [
+        { "value": "left", "label": "t:sections.rich_text.settings.text_align.options.left" },
+        { "value": "center", "label": "t:sections.rich_text.settings.text_align.options.center" },
+        { "value": "right", "label": "t:sections.rich_text.settings.text_align.options.right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "t:sections.rich_text.settings.bg_color.label",
+      "default": "#F4F4F4"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:sections.rich_text.settings.text_color.label",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.rich_text.presets.name"
+    }
+  ]
+}
+{% endschema %}

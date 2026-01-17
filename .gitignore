@@ -17,3 +17,5 @@ release
 *.zip
 
 .env
+.agent/
+designer/

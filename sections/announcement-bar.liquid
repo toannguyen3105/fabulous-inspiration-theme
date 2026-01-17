@@ -1,0 +1,94 @@
+<div class="announcement-bar full-width" style="background-color: {{ section.settings.background_color }}; color: {{ section.settings.text_color }};">
+  <div class="announcement-bar__wrapper">
+    <div class="announcement-bar__left">
+      {{ section.settings.left_text }}
+    </div>
+    <div class="announcement-bar__center">
+      {{ section.settings.center_text }}
+    </div>
+    <div class="announcement-bar__right">
+      {{ section.settings.right_text }} <span class="icon-arrow-down">▼</span>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .announcement-bar {
+    padding: 10px 4rem; /* Full width with padding */
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .announcement-bar__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  .announcement-bar__center {
+    text-align: center;
+    flex-grow: 1;
+  }
+  .announcement-bar__left, .announcement-bar__right {
+    min-width: 100px;
+  }
+  .announcement-bar__right {
+    text-align: right;
+    cursor: pointer;
+  }
+  .icon-arrow-down {
+    font-size: 10px;
+    margin-left: 5px;
+  }
+  
+  @media screen and (max-width: 750px) {
+    .announcement-bar {
+        padding: 10px 2rem;
+    }
+    .announcement-bar__left, .announcement-bar__right {
+      display: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#B32025"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "left_text",
+      "label": "Left Text",
+      "default": "Support"
+    },
+    {
+      "type": "text",
+      "id": "center_text",
+      "label": "Center Message",
+      "default": "Free shipping Australia wide for orders over $100"
+    },
+    {
+      "type": "text",
+      "id": "right_text",
+      "label": "Right Text (Currency)",
+      "default": "USD"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement Bar"
+    }
+  ]
+}
+{% endschema %}
