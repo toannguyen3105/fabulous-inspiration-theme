@@ -193,13 +193,20 @@
       "label": "t:sections.featured_collection.settings.columns_desktop.label"
     },
     {
-      "type": "range",
+      "type": "select",
       "id": "columns_mobile",
-      "min": 1,
-      "max": 2,
-      "step": 1,
-      "default": 1,
-      "label": "t:sections.featured_collection.settings.columns_mobile.label"
+      "default": "2",
+      "label": "t:sections.featured_collection.settings.columns_mobile.label",
+      "options": [
+        {
+          "value": "1",
+          "label": "t:sections.featured_collection.settings.columns_mobile.options.1"
+        },
+        {
+          "value": "2",
+          "label": "t:sections.featured_collection.settings.columns_mobile.options.2"
+        }
+      ]
     },
     {
         "type": "checkbox",
