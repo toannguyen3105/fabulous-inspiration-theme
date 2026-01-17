@@ -1,0 +1,272 @@
+{%- style -%}
+  .section-hero-banner-{{ section.id }} {
+    position: relative;
+    width: 100%;
+    margin-bottom: {{ section.settings.margin_bottom }}px;
+  }
+
+  .hero-banner__media {
+    position: relative;
+    width: 100%;
+    height: {{ section.settings.desktop_height }}px;
+    overflow: hidden;
+  }
+
+  .hero-banner__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero-banner__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, {{ section.settings.overlay_opacity | divided_by: 100.0 }});
+    pointer-events: none;
+  }
+
+  .hero-banner__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 800px;
+    text-align: {{ section.settings.text_align }};
+    color: {{ section.settings.text_color }};
+    z-index: 2;
+  }
+
+  .hero-banner__heading {
+    margin: 0 0 1rem;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: inherit;
+    line-height: 1.2;
+  }
+
+  .hero-banner__subheading {
+    margin: 0 0 2rem;
+    font-size: 1.25rem;
+    color: inherit;
+    opacity: 0.9;
+  }
+
+  .hero-banner__button {
+    display: inline-block;
+    padding: 12px 32px;
+    background-color: {{ section.settings.button_bg_color }};
+    color: {{ section.settings.button_text_color }};
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: opacity 0.3s ease;
+  }
+
+  .hero-banner__button:hover {
+    opacity: 0.9;
+  }
+
+  @media screen and (max-width: 749px) {
+    .hero-banner__media {
+      height: {{ section.settings.mobile_height }}px;
+    }
+
+    .hero-banner__heading {
+      font-size: 2rem;
+    }
+  }
+{%- endstyle -%}
+
+<div class="section-hero-banner-{{ section.id }}">
+  <div class="hero-banner__media">
+    {%- if section.settings.image_desktop != blank -%}
+      <img
+        src="{{ section.settings.image_desktop | image_url: width: 2000 }}"
+        alt="{{ section.settings.image_desktop.alt | escape }}"
+        class="hero-banner__image small-hide"
+        loading="lazy"
+        width="{{ section.settings.image_desktop.width }}"
+        height="{{ section.settings.image_desktop.height }}"
+      >
+      {%- if section.settings.image_mobile != blank -%}
+        <img
+          src="{{ section.settings.image_mobile | image_url: width: 800 }}"
+          alt="{{ section.settings.image_mobile.alt | escape }}"
+          class="hero-banner__image medium-hide large-up-hide"
+          loading="lazy"
+          width="{{ section.settings.image_mobile.width }}"
+          height="{{ section.settings.image_mobile.height }}"
+        >
+      {%- else -%}
+        <img
+          src="{{ section.settings.image_desktop | image_url: width: 800 }}"
+          alt="{{ section.settings.image_desktop.alt | escape }}"
+          class="hero-banner__image medium-hide large-up-hide"
+          loading="lazy"
+          width="{{ section.settings.image_desktop.width }}"
+          height="{{ section.settings.image_desktop.height }}"
+        >
+      {%- endif -%}
+    {%- else -%}
+      {{ 'lifestyle-2' | placeholder_svg_tag: 'hero-banner__image' }}
+    {%- endif -%}
+    <div class="hero-banner__overlay"></div>
+  </div>
+
+  <div class="hero-banner__content">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="hero-banner__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.subheading != blank -%}
+      <p class="hero-banner__subheading">{{ section.settings.subheading }}</p>
+    {%- endif -%}
+    {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
+      <a href="{{ section.settings.button_link }}" class="hero-banner__button">
+        {{ section.settings.button_label }}
+      </a>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.hero_banner.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image_desktop",
+      "label": "t:sections.hero_banner.settings.image_desktop.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "t:sections.hero_banner.settings.image_mobile.label"
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "min": 200,
+      "max": 1000,
+      "step": 50,
+      "unit": "px",
+      "label": "t:sections.hero_banner.settings.desktop_height.label",
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "min": 200,
+      "max": 800,
+      "step": 50,
+      "unit": "px",
+      "label": "t:sections.hero_banner.settings.mobile_height.label",
+      "default": 400
+    },
+    {
+      "type": "header",
+      "content": "t:sections.hero_banner.settings.header_content.content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.hero_banner.settings.heading.label",
+      "default": "Happy Holidays"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "t:sections.hero_banner.settings.subheading.label",
+      "default": "Celebrate the season with our exclusive collection."
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "t:sections.hero_banner.settings.text_align.label",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.hero_banner.settings.text_align.options.left"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.hero_banner.settings.text_align.options.center"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.hero_banner.settings.text_align.options.right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:sections.hero_banner.settings.text_color.label",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "t:sections.hero_banner.settings.overlay_opacity.label",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "t:sections.hero_banner.settings.header_button.content"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "t:sections.hero_banner.settings.button_label.label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "t:sections.hero_banner.settings.button_link.label"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "t:sections.hero_banner.settings.button_bg_color.label",
+      "default": "#2EA3A3"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "t:sections.hero_banner.settings.button_text_color.label",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.margin.header_margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.margin.margin_bottom",
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.hero_banner.presets.name"
+    }
+  ]
+}
+{% endschema %}

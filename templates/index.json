@@ -1,20 +1,35 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
-    "main": {
-      "type": "hello-world",
-      "settings": {}
+    "hero": {
+      "type": "hero-banner",
+      "settings": {
+        "heading": "Merry Christmas",
+        "subheading": "Discover our magical holiday collection",
+        "button_label": "Shop Collection",
+        "button_link": "shopify:\/\/collections\/all",
+        "overlay_opacity": 30
+      }
+    },
+    "welcome": {
+      "type": "rich-text",
+      "settings": {
+        "heading": "Welcome to Fabulous",
+        "content": "<p>We bring you the best inspiration for your holiday season. Shop our curated gifts and decorations.</p>",
+        "bg_color": "#ffffff"
+      }
+    },
+    "featured": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Best Sellers",
+        "products_to_show": 8,
+        "columns_desktop": 4
+      }
     }
   },
   "order": [
-    "main"
+    "hero",
+    "welcome",
+    "featured"
   ]
 }
