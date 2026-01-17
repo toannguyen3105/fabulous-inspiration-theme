@@ -1,65 +1,396 @@
-<header>
-  <h2 class="header__title">
-    {{ shop.name | link_to: routes.root_url }}
-  </h2>
+<sticky-header class="header-wrapper" data-sticky-type="{% if section.settings.sticky_header %}on-scroll-up{% endif %}">
+  <header class="header full-width" style="--padding-top: {{ section.settings.padding_top }}px; --padding-bottom: {{ section.settings.padding_bottom }}px;">
+  
+  <nav class="header__inline-menu header__inline-menu--left">
+    <ul class="list-menu list-menu--inline" role="list">
+      {%- for link in section.settings.menu.links -%}
+        <li>
+          <a href="{{ link.url }}" class="header__menu-item list-menu__item link link--text focus-inset{% if link.current %} list-menu__item--active{% endif %}{% if link.title == 'Women' %} list-menu__item--highlight{% endif %}">
+            {{ link.title | escape }}
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </nav>
 
-  <div class="header__menu">
-    {% for link in section.settings.menu.links %}
-      {{ link.title | link_to: link.url }}
-    {% endfor %}
+  <div class="header__logo-wrapper">
+    {% if section.settings.logo != blank %}
+      <a href="{{ routes.root_url }}" class="header__heading-link">
+        {% assign logo_alt = section.settings.logo.alt | default: shop.name | escape %}
+        {{ section.settings.logo | image_url: width: section.settings.logo_width | image_tag: class: 'header__heading-logo', alt: logo_alt }}
+      </a>
+    {% else %}
+      <a href="{{ routes.root_url }}" class="header__heading-link text-logo">
+        O<span class="text-logo-s">S</span>ZEA
+      </a>
+    {% endif %}
   </div>
 
+  <nav class="header__inline-menu header__inline-menu--right">
+    <ul class="list-menu list-menu--inline" role="list">
+      {%- for link in section.settings.menu_right.links -%}
+        <li>
+          <a href="{{ link.url }}" class="header__menu-item list-menu__item link link--text focus-inset{% if link.current %} list-menu__item--active{% endif %}">
+            {{ link.title | escape }}
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </nav>
+
   <div class="header__icons">
-    {% if shop.customer_accounts_enabled %}
-      {{ 'icon-account.svg' | inline_asset_content | link_to: routes.account_url }}
-    {% endif %}
+    <a href="{{ routes.search_url }}" class="header__icon link focus-inset">
+      {% render 'icon-search' %}
+      <span class="visually-hidden">{{ 'sections.header.search' | t }}</span>
+    </a>
 
-    <a href="{{ routes.cart_url }}">
-      {% if cart.item_count > 0 %}
-        <sup>{{ cart.item_count }}</sup>
-      {% endif %}
+     <a href="#" class="header__icon link focus-inset">
+       <!-- Wishlist Icon SVG -->
+       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      <span class="visually-hidden">Wishlist</span>
+    </a>
 
-      {{ 'icon-cart.svg' | inline_asset_content }}
+    {%- if shop.customer_accounts_enabled -%}
+      <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="header__icon link focus-inset">
+        {% render 'icon-account' %}
+        <span class="visually-hidden">
+          {%- liquid
+            if customer
+              echo 'sections.header.account' | t
+            else
+              echo 'sections.header.account' | t
+            endif
+          -%}
+        </span>
+      </a>
+    {%- endif -%}
+
+    <a href="{{ routes.cart_url }}" class="header__icon link focus-inset" id="cart-icon-bubble">
+      {% render 'icon-cart' %}
+      <span class="visually-hidden">{{ 'sections.header.cart' | t }}</span>
+      {%- if cart != empty -%}
+        <div class="cart-count-bubble">
+          {%- if cart.item_count < 100 -%}
+            <span aria-hidden="true">{{ cart.item_count }}</span>
+          {%- endif -%}
+          <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+        </div>
+      {%- endif -%}
     </a>
   </div>
 </header>
-
+</sticky-header>
 {% stylesheet %}
-  header {
-    height: 5rem;
+  .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-top: var(--padding-top);
+    padding-bottom: var(--padding-bottom);
+    padding-right: 4rem; 
+    padding-left: 4rem;
+    background: #fff;
+    transition: transform 0.3s ease;
+    border-bottom: 1px solid transparent;
   }
-  header a {
-    position: relative;
-    text-decoration: none;
-    color: var(--color-foreground);
+  @media screen and (max-width: 990px) {
+      .header {
+          padding-left: 2rem; 
+          padding-right: 2rem;
+      }
   }
-  header a sup {
-    position: absolute;
-    left: 100%;
-    overflow: hidden;
-    max-width: var(--page-margin);
+
+  .header[data-sticky-type="on-scroll-up"],
+  .header[data-sticky-type="always"] {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
   }
-  header svg {
-    width: 2rem;
+  
+  .header.shopify-section-header-sticky {
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
   }
-  header .header__menu,
-  header .header__icons {
+
+  /* Logo */
+  .header__logo-wrapper {
+    flex-grow: 1;
     display: flex;
-    gap: 1rem;
+    justify-content: center;
+    text-align: center;
+  }
+  .header__heading-logo {
+    display: block;
+    height: auto;
+    object-fit: contain;
+  }
+  .header__heading-link {
+    text-decoration: none;
+    color: #000;
+  }
+  .text-logo {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #000;
+    position: relative;
+    display: inline-block;
+  }
+  .text-logo-s {
+      position: relative;
+      display: inline-block;
+      margin: 0 2px;
+  }
+  /* Pseudo-element for the teal lines styling (Simplified version) */
+  .text-logo-s::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 12px;
+      height: 12px;
+      /* Simple visualization of lines */
+      background: linear-gradient(to bottom, transparent 20%, #2EA3A3 20%, #2EA3A3 40%, transparent 40%, transparent 60%, #2EA3A3 60%, #2EA3A3 80%, transparent 80%);
+      opacity: 0.5; /* Overlay effect */
+      z-index: -1;
+  }
+
+
+  /* Menu */
+  .header__inline-menu {
+      flex: 1;
+  }
+  .header__inline-menu--right {
+      display: flex;
+      justify-content: flex-start; /* Right menu aligns left towards logo or adjust */
+      padding-left: 2rem;
+  }
+  .header__inline-menu--left {
+      display: flex;
+      justify-content: flex-end; /* Left menu aligns right towards logo */
+      padding-right: 2rem;
+  }
+
+  .list-menu--inline {
+    display: inline-flex;
+    flex-wrap: nowrap; /* Prevent wrapping */
+    gap: 3rem; 
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .header__menu-item {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.5rem; 
+    font-weight: 500;
+    font-family: var(--font-body-family);
+    transition: color 0.2s;
+    white-space: nowrap; /* Prevent text wrap */
+  }
+  
+  .header__menu-item:hover {
+    color: #2EA3A3;
+  }
+  
+  .list-menu__item--highlight {
+      color: #2EA3A3;
+  }
+
+  /* Icons */
+  .header__icons {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex: 0 0 auto; /* Don't shrink */
+  }
+
+  .header__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    color: #333;
+    transition: color 0.2s;
+  }
+  .header__icon:hover {
+      color: #2EA3A3;
+  }
+
+  .cart-count-bubble {
+    position: absolute;
+    background-color: #2EA3A3; /* Teal badge */
+    color: #fff;
+    border-radius: 50%;
+    width: 1.6rem;
+    height: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    top: 5px;
+    right: 0;
+  }
+
+  .visually-hidden {
+    position: absolute !important;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    clip: rect(0 0 0 0);
+    word-wrap: normal !important;
+  }
+  
+  @media screen and (max-width: 990px) {
+      .header__inline-menu {
+          display: none; /* Hide menus on mobile for now */
+      }
+      .header__logo-wrapper {
+          justify-content: flex-start;
+      }
   }
 {% endstylesheet %}
 
+{% javascript %}
+  class StickyHeader extends HTMLElement {
+    constructor() {
+      super();
+    }
+    
+    connectedCallback() {
+      this.header = document.querySelector('.header');
+      this.headerBounds = {};
+      this.currentScrollTop = 0;
+      this.preventHide = false;
+      this.paddingTop = parseInt(window.getComputedStyle(this.header).paddingTop, 10);
+
+      this.onScrollHandler = this.onScroll.bind(this);
+      this.hideHeaderOnScrollUp = () => this.preventHide = true;
+      
+      this.addEventListener('preventHeaderReveal', this.hideHeaderOnScrollUp);
+      window.addEventListener('scroll', this.onScrollHandler, false);
+      
+      this.createObserver();
+    }
+    
+    disconnectedCallback() {
+      this.removeEventListener('preventHeaderReveal', this.hideHeaderOnScrollUp);
+      window.removeEventListener('scroll', this.onScrollHandler);
+    }
+    
+    createObserver() {
+      let observer = new IntersectionObserver((entries, observer) => {
+        this.headerBounds = entries[0].intersectionRect;
+        observer.disconnect();
+      });
+      observer.observe(this.header);
+    }
+
+    onScroll() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      if (scrollTop > this.currentScrollTop && scrollTop > this.headerBounds.bottom) {
+        if (this.preventHide) return;
+        requestAnimationFrame(this.hide.bind(this));
+      } else if (scrollTop < this.currentScrollTop && scrollTop > this.headerBounds.bottom) {
+        requestAnimationFrame(this.reveal.bind(this));
+      } else if (scrollTop <= this.headerBounds.top) {
+        requestAnimationFrame(this.reset.bind(this));
+      }
+      
+      this.currentScrollTop = scrollTop;
+    }
+    
+    hide() {
+       this.header.classList.add('shopify-section-header-hidden', 'shopify-section-header-sticky');
+       this.header.style.transform = 'translateY(-100%)';
+    }
+    
+    reveal() {
+       this.header.classList.add('shopify-section-header-sticky', 'animate');
+       this.header.classList.remove('shopify-section-header-hidden');
+       this.header.style.transform = 'translateY(0)';
+    }
+
+    reset() {
+       this.header.classList.remove('shopify-section-header-hidden', 'shopify-section-header-sticky', 'animate');
+       this.header.style.transform = '';
+    }
+  }
+  
+  customElements.define('sticky-header', StickyHeader);
+{% endjavascript %}
+
 {% schema %}
 {
-  "name": "t:general.header",
+  "name": "t:sections.header.name",
+  "class": "section-header",
   "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "t:sections.header.settings.logo.label"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 50,
+      "max": 250,
+      "step": 10,
+      "default": 100,
+      "unit": "t:sections.header.settings.logo_width.unit",
+      "label": "t:sections.header.settings.logo_width.label"
+    },
     {
       "type": "link_list",
       "id": "menu",
-      "label": "t:labels.menu"
+      "default": "main-menu",
+      "label": "Left Menu"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_right",
+      "label": "Right Menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky_header",
+      "default": true,
+      "label": "t:sections.header.settings.sticky_header.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 28
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.header.presets.name"
     }
   ]
 }
