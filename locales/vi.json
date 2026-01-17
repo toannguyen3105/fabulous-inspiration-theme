@@ -101,7 +101,13 @@
         "collection": { "label": "Bộ sưu tập" },
         "products_to_show": { "label": "Số sản phẩm tối đa" },
         "columns_desktop": { "label": "Số cột trên desktop" },
-        "columns_mobile": { "label": "Số cột trên mobile" },
+        "columns_mobile": { 
+          "label": "Số cột trên mobile",
+          "options": {
+            "1": "1 cột",
+            "2": "2 cột"
+          }
+        },
          "show_view_all": { "label": "Hiển thị nút \"Xem tất cả\"" }
       },
       "presets": {
