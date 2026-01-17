@@ -37,7 +37,7 @@
     "alignment": "Alignment",
     "background": "Background",
     "foreground": "Foreground",
-    "grid_gap": "Grid spacing",
+    "grid_gap": "Grid gap",
     "grid_item_width": "Grid item width",
     "input_corner_radius": "Input corner radius",
     "layout_direction": "Layout direction",
@@ -70,7 +70,30 @@
     "text_style": {
       "title": "Title",
       "subtitle": "Subtitle",
-      "normal": "Normal text"
-    },
+      "normal": "Normal"
+    }
+  },
+  "sections": {
+    "header": {
+      "name": "Header",
+      "settings": {
+        "logo": {
+          "label": "Logo image"
+        },
+        "logo_width": {
+          "label": "Logo width",
+          "unit": "px"
+        },
+        "menu": {
+          "label": "Menu"
+        },
+        "sticky_header": {
+          "label": "Enable sticky header"
+        }
+      },
+      "presets": {
+        "name": "Header"
+      }
+    }
   }
 }

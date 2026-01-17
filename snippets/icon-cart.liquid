@@ -1,0 +1,24 @@
+{% doc %}
+  Renders a cart/bag icon.
+
+  @param {string} [class] - Optional class to apply to the svg
+  @example
+  {% render 'icon-cart', class: 'header__icon' %}
+{% enddoc %}
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  fill="none"
+  class="icon icon-cart {{ class }}"
+  viewBox="0 0 24 24"
+  stroke="currentColor"
+  stroke-width="1.5"
+  aria-hidden="true"
+  role="presentation"
+>
+  <path
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 5.68c.496 2.23.744 3.345.028 4.08C20.133 19 18.992 19 16.71 19H7.29c-2.28 0-3.422 0-4.138-.713-.716-.735-.468-1.85.028-4.08l1.263-5.68c.243-1.093.364-1.639.805-1.992.44-.353 1-.353 2.118-.353h9.268c1.119 0 1.678 0 2.118.353.441.353.562.9.805 1.993z"
+  />
+</svg>
